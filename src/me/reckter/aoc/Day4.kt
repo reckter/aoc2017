@@ -14,20 +14,10 @@ class Day4 : Day {
     override fun solvePart2() {
         loadInput(4)
             .map { it.split(" ") }
+            .map { it.map { it.toList().distinct().sorted() } }
             .filter { it.distinct().size == it.size }
-            .filter {
-                it
-                    .allCombinations()
-                    .all {
-                        val groupA = it.first.groupBy { it }
-                        val groupB = it.second.groupBy { it }
-
-                        groupA.size != groupB.size
-                        || groupA.any { groupB[it.key] != it.value }
-                    }
-            }
             .count()
-            .print("solution 2 : ")
+            .print("solution 2: ")
     }
 }
 
