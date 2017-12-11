@@ -51,7 +51,7 @@ fun <E> List<E>.pairWithIndex(indexer: (index: Int) -> Int): List<Pair<E, E>>
 fun <E> List<E>.pairWithIndexAndSize(indexer: (index: Int, size: Int) -> Int): List<Pair<E, E>>
     = this.mapIndexed { index, elem -> elem to this[indexer(index, this.size) % this.size] }
 
-fun Any.print(name: String) = println(name + this.toString())
+fun Any?.print(name: String) = println(name + this.toString())
 
 fun <E> List<E>.allCombinations(includeSelf: Boolean = false): List<Pair<E, E>> =
     this
@@ -61,4 +61,12 @@ fun <E> List<E>.allCombinations(includeSelf: Boolean = false): List<Pair<E, E>> 
                     it to other
                 else null
             }
+        }
+
+fun <E> List<E>.buildConsecutiveGrouosOf(length: Int)  =
+    this
+        .indices
+        .groupBy { (it / 16) }
+        .map { (key, values) ->
+            values.map{this[it]}
         }
