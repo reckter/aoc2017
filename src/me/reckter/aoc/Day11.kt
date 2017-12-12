@@ -84,10 +84,7 @@ data class Point(
             Math.abs(to.x - this.x),
             Math.abs(to.y - this.y),
             Math.abs(to.z - this.z)
-        )
-            .sorted()
-            .subList(0, 2)
-            .sum()
+        ).max() ?: error("no max!")
     }
 }
 
