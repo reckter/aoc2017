@@ -41,27 +41,7 @@ data class Scanner(
     val depth: Int,
     val position: Int = 0,
     val goingUp: Boolean = true
-) {
-    fun move(): Scanner {
-        var newGoingUp = goingUp
-        var newPos =
-            if (goingUp)
-                position + 1
-            else
-                position - 1
-        if (newPos < 0 || newPos >= depth) {
-            newGoingUp = !newGoingUp
-            newPos = if (newPos < 0)
-                1
-            else
-                depth - 2
-        }
-        return this.copy(
-            position = newPos,
-            goingUp = newGoingUp
-        )
-    }
-}
+)
 
 fun main(args: Array<String>) {
     val day = Day13()

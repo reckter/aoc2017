@@ -8,7 +8,7 @@ class Day8 : Day {
     init {
         loadInput(8)
             .parseWithRegex("(.*?) (.*?) (.*?) if (.*?) (.*?) (.*?)")
-            .mapIndexed() { index, (register, operation, value, comparatorRegister, comparison, comparisonValue) ->
+            .mapIndexed { index, (register, operation, value, comparatorRegister, comparison, comparisonValue) ->
                 val valueOfComparissonRegister = registers.getOrDefault(comparatorRegister)
                 if(getComparator(comparison)(valueOfComparissonRegister, Integer.parseInt(comparisonValue))) {
                     val oldValue = registers.getOrDefault(register)
@@ -24,6 +24,7 @@ class Day8 : Day {
     fun Map<String, Int>.getOrDefault(register: String): Int {
         return this.getOrDefault(register, 0)
     }
+
     override fun solvePart1() {
         registers
             .values
